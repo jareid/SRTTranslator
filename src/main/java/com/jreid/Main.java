@@ -13,17 +13,13 @@ public class Main {
 
     public static void main(String[] args) {
         LOGGER.info("Application started");
-        if (args.length == 3) {
-            String fileName = "files/sub.srt";
-            String outputName = fileName.substring(0,fileName.length() - 4) + "_" + LanguageCodes.SPANISH + ".srt";
+        String fileName = "files/sub.srt";
+        String outputName = fileName.substring(0,fileName.length() - 4) + "_" + LanguageCodes.SPANISH + ".srt";
 
-            Subtitle testSubtitle = SRTParser.getSubtitlesFromFile(fileName, false, false);
-            Subtitle translatedTestSubtitle = SRTTranslator.translate( ResourceUtil.getGoogleApiKey(), testSubtitle,
-                                                                       LanguageCodes.ENGLISH, LanguageCodes.SPANISH);
-            Subtitle.toFile(outputName, translatedTestSubtitle);
-        } else {
-            LOGGER.error("Missing command line arguments, should be \"text languageFrom languageTo\"");
-        }
+        Subtitle testSubtitle = SRTParser.getSubtitlesFromFile(fileName, false, false);
+        Subtitle translatedTestSubtitle = SRTTranslator.translate( ResourceUtil.getGoogleApiKey(), testSubtitle,
+                                                                   LanguageCodes.ENGLISH, LanguageCodes.SPANISH);
+        Subtitle.toFile(outputName, translatedTestSubtitle);
     }
 }
 
