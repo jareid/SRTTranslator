@@ -5,7 +5,7 @@ SRTTranslator is everything that you need to translate a subtitle file
 ## Installation
 
 ### Option 1
-As a lightweight version of the code, the _best way to make use of it is cloning the code and adding it to your project.
+As a lightweight version of the code, the best way to make use of it is cloning the code and adding it to your project.
 
 ### Option 2
 Include the following in your Maven project file:
@@ -18,7 +18,7 @@ Include the following in your Maven project file:
 		</dependency>
 ```	
 
-## Contributing_
+## Contributing
 Pull requests are welcome.
 
 Please make sure to update tests as appropriate.
