@@ -1,0 +1,12 @@
+1
+00:00:00,000 --> 00:00:01,500
+Por Jamie Reid
+
+2
+00:00:01,500 --> 00:00:02,500
+<i>Probando archivo str.</i>
+
+3
+00:00:03,000 --> 00:00:15,000
+<i>Y va a pasar prueba de nuevas líneas una y otra vez --</i>
+

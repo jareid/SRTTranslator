@@ -17,7 +17,7 @@ public class Subtitle {
 	private String startTime;
 	private String endTime;
 	private String text;
-	private Subtitle nextSubtitle;
+	private Subtitle nextSubtitle = null;
 
 	/**
 	 * Empty Constructor
@@ -116,13 +116,20 @@ public class Subtitle {
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(getString());
+		// Write the current Subtitle
+		stringBuilder.append(getString())
+					 .append(System.lineSeparator())
+					 .append(System.lineSeparator());
+
+		// Process subsequent subtitles
 		Subtitle nextSubtitle = this.nextSubtitle;
-		while( nextSubtitle != null ) {
+		while( !nextSubtitle.isNull() ) {
 			stringBuilder.append(nextSubtitle.getString())
-					.append(System.lineSeparator());
+						 .append(System.lineSeparator())
+						 .append(System.lineSeparator());
 			nextSubtitle = nextSubtitle.nextSubtitle;
 		}
+
 		return stringBuilder.toString();
 	}
 

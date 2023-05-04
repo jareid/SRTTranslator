@@ -1,5 +1,7 @@
 package com.jreid.srt;
 
+import com.jreid.utils.LanguageCodes;
+import com.jreid.utils.ResourceUtil;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -7,17 +9,13 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestSRTTranslate {
-    private static final String SPANISH_HELLO = "hola";
-    private static final String ENGLISH_HELLO = "hello";
-
     @Test
-    public void translatesEnToEs() {
+    public void translatesSubtitleEnToEs() {
+        Subtitle testSubtitle = SRTParser.getSubtitlesFromFile("files/sub.srt", false, false);
+        Subtitle translatedTestSubtitle = SRTTranslator.translate( ResourceUtil.getGoogleApiKey(), testSubtitle,
+                                                                   LanguageCodes.ENGLISH, LanguageCodes.SPANISH);
+        Subtitle parsedResultSubtitle = SRTParser.getSubtitlesFromFile("files/translated_sub.srt", false, false);
 
-        assertThat(ENGLISH_HELLO, is(equalTo("hello")));
-    }
-
-    @Test
-    public void translatesSubtitleEsToEn() {
-        assertThat(SPANISH_HELLO, is(equalTo("hola")));
+        assertThat( translatedTestSubtitle, is( equalTo( parsedResultSubtitle) ) );
     }
 }

@@ -21,12 +21,15 @@ public class SRTTranslator {
         Subtitle translatedSubtitle = toTranslate;
         Subtitle nextSubtitleToTranslate = translatedSubtitle;
 
-        while (!nextSubtitleToTranslate.isNull()) {
+        while (nextSubtitleToTranslate != null && !nextSubtitleToTranslate.isNull()) {
             String text = nextSubtitleToTranslate.getText();
             String translatedText = GoogleTranslateUtil.translate(googleApiKey, text, fromLanguage, toLanguage);
             nextSubtitleToTranslate.setText(translatedText);
-            translatedSubtitle = nextSubtitleToTranslate;
-            nextSubtitleToTranslate = translatedSubtitle.getNextSubtitle();
+            if (translatedSubtitle.getNextSubtitle() != null && !nextSubtitleToTranslate.isNull()) {
+                nextSubtitleToTranslate = nextSubtitleToTranslate.getNextSubtitle();
+            } else {
+                nextSubtitleToTranslate = null;
+            }
         }
         return translatedSubtitle;
     }
