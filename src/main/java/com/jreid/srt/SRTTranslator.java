@@ -18,7 +18,7 @@ public class SRTTranslator {
      * @return A translated Subtitle object
      */
     public static Subtitle translate(String googleApiKey, Subtitle toTranslate, String fromLanguage, String toLanguage) {
-        Subtitle translatedSubtitle = new Subtitle(toTranslate);
+        Subtitle translatedSubtitle = toTranslate;
         Subtitle nextSubtitleToTranslate = translatedSubtitle;
 
         while (nextSubtitleToTranslate != null) {

@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Subtitle {
 	private final static Logger logger = LogManager.getLogger(Subtitle.class);
@@ -85,6 +86,26 @@ public class Subtitle {
 				endTime +
 				System.lineSeparator() +
 				text;
+	}
+
+	@Override
+	public int hashCode() {
+		return id + text.hashCode() + startTime.hashCode() + endTime.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (this == object) return true; // self check
+		if (object == null) return false; // null check
+		if (getClass() != object.getClass()) return false; // type check and cast
+
+		// object comparison
+		Subtitle otherSubtitle = (Subtitle) object;
+		return Objects.equals(id, otherSubtitle.id)
+				&& Objects.equals(text, otherSubtitle.text)
+				&& Objects.equals(startTime, otherSubtitle.startTime)
+				&& Objects.equals(endTime, otherSubtitle.endTime)
+				&& Objects.equals(nextSubtitle, otherSubtitle.nextSubtitle);
 	}
 
 	@Override

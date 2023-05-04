@@ -33,11 +33,11 @@ public final class SRTParser {
 	 * @return a Subtitle object
 	 */
 	public static Subtitle getSubtitlesFromFile(String path, Boolean removeTags, Boolean removeNewlines) {
-		Subtitle subtitle = null;
+		Subtitle mainSubtitle = new Subtitle();
 		StringBuilder srt;
 
 		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(Files.newInputStream(Paths.get(path)), DEFAULT_CHARSET))) {
-			subtitle = new Subtitle();
+			Subtitle subtitle = mainSubtitle;
 			srt = new StringBuilder();
 
 			while (bufferedReader.ready()) {
@@ -60,9 +60,6 @@ public final class SRTParser {
 				String aux;
 				while ((aux = bufferedReader.readLine()) != null && !aux.isEmpty()) {
 					srt.append(aux);
-					if (!line.endsWith(" ")) {// for any new lines '\n' removed from BufferedReader
-						srt.append("\n");
-					}
 				}
 
 				// Remove new lines if requested
@@ -88,6 +85,6 @@ public final class SRTParser {
 		} catch (Exception exception) {
 			LOGGER.fatal("error parsing srt file", exception);
 		}
-		return subtitle;
+		return mainSubtitle;
 	}
 }
