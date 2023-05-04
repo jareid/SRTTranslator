@@ -1,7 +1,7 @@
-package com.jreid.srt;
+package com.jreid.srttranslator.srt;
 
-import com.jreid.utils.LanguageCodes;
-import com.jreid.utils.ResourceUtil;
+import com.jreid.srttranslator.utils.LanguageCodes;
+import com.jreid.srttranslator.utils.ResourceUtil;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;

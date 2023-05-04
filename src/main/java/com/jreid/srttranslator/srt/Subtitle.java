@@ -1,5 +1,6 @@
-package com.jreid.srt;
+package com.jreid.srttranslator.srt;
 
+import lombok.Data;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -8,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
 
+@Data
 public class Subtitle {
 	private final static Logger logger = LogManager.getLogger(Subtitle.class);
 
@@ -38,46 +40,6 @@ public class Subtitle {
 		this.nextSubtitle = otherSubtitle.nextSubtitle;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public String getStartTime() {
-		return startTime;
-	}
-
-	public String getEndTime() {
-		return endTime;
-	}
-
-	public String getText() {
-		return text;
-	}
-
-	public Subtitle getNextSubtitle() {
-		return nextSubtitle;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
-	}
-
-	public void setEndTime(String endTime) {
-		this.endTime = endTime;
-	}
-
-	public void setText(String text) {
-		this.text = text;
-	}
-
-	public void setNextSubtitle(Subtitle nextSubtitle) {
-		this.nextSubtitle = nextSubtitle;
-	}
-
 	public String getString() {
 		return id +
 				System.lineSeparator() +
@@ -88,8 +50,8 @@ public class Subtitle {
 				text;
 	}
 
-	public boolean isNull() {
-		return id == 0 || text == null;
+	public boolean isNotNull() {
+		return id != 0 && text != null;
 	}
 
 	@Override
@@ -123,7 +85,7 @@ public class Subtitle {
 
 		// Process subsequent subtitles
 		Subtitle nextSubtitle = this.nextSubtitle;
-		while( !nextSubtitle.isNull() ) {
+		while(nextSubtitle.isNotNull()) {
 			stringBuilder.append(nextSubtitle.getString())
 						 .append(System.lineSeparator())
 						 .append(System.lineSeparator());

@@ -1,10 +1,10 @@
 package com.jreid;
 
-import com.jreid.srt.SRTParser;
-import com.jreid.srt.SRTTranslator;
-import com.jreid.srt.Subtitle;
-import com.jreid.utils.LanguageCodes;
-import com.jreid.utils.ResourceUtil;
+import com.jreid.srttranslator.srt.SRTParser;
+import com.jreid.srttranslator.srt.SRTTranslator;
+import com.jreid.srttranslator.srt.Subtitle;
+import com.jreid.srttranslator.utils.LanguageCodes;
+import com.jreid.srttranslator.utils.ResourceUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

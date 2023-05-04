@@ -1,4 +1,4 @@
-package com.jreid.srt;
+package com.jreid.srttranslator.srt;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,11 +24,10 @@ public final class SRTParser {
 	private static final int PATTERN_TIME_REGEX_GROUP_START_TIME = 1;
 	private static final int PATTERN_TIME_REGEX_GROUP_END_TIME = 2;
 	/**
-	 *
 	 * This method is responsible for parsing a STR file.
 	 *
-	 * @param path the subtitle to read
-	 * @param removeTags Remove any HTML tags from the subtitle
+	 * @param path           the subtitle to read
+	 * @param removeTags     Remove any HTML tags from the subtitle
 	 * @param removeNewlines Remove any new lines from the subtitle
 	 * @return a Subtitle object
 	 */

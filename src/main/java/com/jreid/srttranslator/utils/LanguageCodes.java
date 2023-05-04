@@ -1,4 +1,4 @@
-package com.jreid.utils;
+package com.jreid.srttranslator.utils;
 
 public class LanguageCodes {
     public static final String ENGLISH = "en_us";

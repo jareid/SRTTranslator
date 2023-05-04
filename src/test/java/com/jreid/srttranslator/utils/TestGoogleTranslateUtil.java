@@ -1,4 +1,4 @@
-package com.jreid.utils;
+package com.jreid.srttranslator.utils;
 
 import org.junit.Test;
 

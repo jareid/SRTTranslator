@@ -1,6 +1,6 @@
-package com.jreid.srt;
+package com.jreid.srttranslator.srt;
 
-import com.jreid.utils.GoogleTranslateUtil;
+import com.jreid.srttranslator.utils.GoogleTranslateUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,19 +18,19 @@ public class SRTTranslator {
      * @return A translated Subtitle object
      */
     public static Subtitle translate(String googleApiKey, Subtitle toTranslate, String fromLanguage, String toLanguage) {
-        Subtitle translatedSubtitle = toTranslate;
-        Subtitle nextSubtitleToTranslate = translatedSubtitle;
+        Subtitle nextSubtitleToTranslate = toTranslate;
 
-        while (nextSubtitleToTranslate != null && !nextSubtitleToTranslate.isNull()) {
+        while (nextSubtitleToTranslate != null && nextSubtitleToTranslate.isNotNull()) {
             String text = nextSubtitleToTranslate.getText();
             String translatedText = GoogleTranslateUtil.translate(googleApiKey, text, fromLanguage, toLanguage);
             nextSubtitleToTranslate.setText(translatedText);
-            if (translatedSubtitle.getNextSubtitle() != null && !nextSubtitleToTranslate.isNull()) {
+            if (toTranslate.getNextSubtitle() != null && nextSubtitleToTranslate.isNotNull()) {
                 nextSubtitleToTranslate = nextSubtitleToTranslate.getNextSubtitle();
             } else {
                 nextSubtitleToTranslate = null;
             }
         }
-        return translatedSubtitle;
+
+        return toTranslate;
     }
 }
