@@ -88,8 +88,13 @@ public class Subtitle {
 				text;
 	}
 
+	public boolean isNull() {
+		return id == 0 || text == null;
+	}
+
 	@Override
 	public int hashCode() {
+		if (id == 0) return 0;
 		return id + text.hashCode() + startTime.hashCode() + endTime.hashCode();
 	}
 

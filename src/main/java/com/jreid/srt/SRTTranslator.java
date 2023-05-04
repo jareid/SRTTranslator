@@ -21,7 +21,7 @@ public class SRTTranslator {
         Subtitle translatedSubtitle = toTranslate;
         Subtitle nextSubtitleToTranslate = translatedSubtitle;
 
-        while (nextSubtitleToTranslate != null) {
+        while (!nextSubtitleToTranslate.isNull()) {
             String text = nextSubtitleToTranslate.getText();
             String translatedText = GoogleTranslateUtil.translate(googleApiKey, text, fromLanguage, toLanguage);
             nextSubtitleToTranslate.setText(translatedText);
