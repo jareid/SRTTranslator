@@ -41,7 +41,7 @@ The below code takes a subtitle file named test.srt and translates it from Engli
 String fileName = "test.srt";
 String translateFrom = LanguageCodes.ENGLISH;
 String translateTo = LanguageCodes.SPANISH;
-Subtitle testSubtitle = SRTParser.getSubtitlesFromFile(fileName);
+Subtitle testSubtitle = SRTParser.getSubtitlesFromFile(fileName, false, false);
 String outputName = fileName.substring(0,fileName - 4) + "_" + translateTo + ".srt";
 Subtitle translatedTestSubtitle = SRTTranslator.translate( ResourceUtil.getGoogleApiKey(), testSubtitle, translateFrom, translateTo);
 Subtitle.toFile(outputName, translatedTestSubtitle);

@@ -28,6 +28,8 @@ public final class SRTParser {
 	 * This method is responsible for parsing a STR file.
 	 *
 	 * @param path the subtitle to read
+	 * @param removeTags Remove any HTML tags from the subtitle
+	 * @param removeNewlines Remove any new lines from the subtitle
 	 * @return a Subtitle object
 	 */
 	public static Subtitle getSubtitlesFromFile(String path, Boolean removeTags, Boolean removeNewlines) {
