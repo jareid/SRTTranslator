@@ -62,7 +62,7 @@ public class Subtitle {
 
 	/**
 	 * Gets the Subtitle object at a particular index
-	 * @param index
+	 * @param index index of subtitle object wanted
 	 * @return a Subtilte object
 	 */
 	public Subtitle get(int index) {
@@ -77,16 +77,16 @@ public class Subtitle {
 	}
 
 	public Subtitle getFirst() {
-
+		return null;
 	}
 
 	public Subtitle getLast() {
-
+		return null;
 	}
 
 	/**
 	 * Returns the number of Subtitle objects
-	 * @return
+	 * @return the size of the Subtitle object
 	 */
 	public int size() {
 		if (!this.isNotNull()) return 0;
@@ -97,6 +97,7 @@ public class Subtitle {
 				if ( !nextSubtitle.isNotNull() ) return size;
 				else nextSubtitle = nextSubtitle.getNextSubtitle();
 			}
+			return size;
 		}
 	}
 
