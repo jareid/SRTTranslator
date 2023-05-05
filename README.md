@@ -1,6 +1,6 @@
 # SRTParser
 
-SRTTranslator is everything that you need to translate a subtitle file
+SRTTranslator is everything that you need to translate a subtitleContents file
 
 ## Installation
 
@@ -27,7 +27,7 @@ Please make sure to update tests as appropriate.
 
 The purpose of this project is to give Java an easy, fast, performant and light weight SRT translator library.
 
-With SRTTranslator you can easily translate a subtitle into any language from another language provided you know the language code to use.
+With SRTTranslator you can easily translate a subtitleContents into any language from another language provided you know the language code to use.
 
 ## The usage of the project:
 
@@ -35,16 +35,16 @@ To start you will need a google API key, instructions on how to obtain one can b
 https://weglot.com/blog/google-translate-api-key/
 This API Key should be stored in google.properties in the apiKey resource.
 
-The below code takes a subtitle file named test.srt and translates it from English to Spanish and outputs the resulting SRT file
+The below code takes a subtitleContents file named test.srt and translates it from English to Spanish and outputs the resulting SRT file
 
 ```	
 String fileName = "test.srt";
 String translateFrom = LanguageCodes.ENGLISH;
 String translateTo = LanguageCodes.SPANISH;
-Subtitle testSubtitle = SRTParser.getSubtitlesFromFile(fileName, false, false);
+Subtitle testSubtitleContents = SRTParser.getSubtitlesFromFile(fileName, false, false);
 String outputName = fileName.substring(0,fileName - 4) + "_" + translateTo + ".srt";
-Subtitle translatedTestSubtitle = SRTTranslator.translate( ResourceUtil.getGoogleApiKey(), testSubtitle, translateFrom, translateTo);
-Subtitle.toFile(outputName, translatedTestSubtitle);
+Subtitle translatedTestSubtitleContents = SRTTranslator.translate( ResourceUtil.getGoogleApiKey(), testSubtitleContents, translateFrom, translateTo);
+Subtitle.toFile(outputName, translatedTestSubtitleContents);
 ```
 
 ## Version (and Version History)

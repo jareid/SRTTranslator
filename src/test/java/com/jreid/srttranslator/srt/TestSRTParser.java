@@ -1,5 +1,6 @@
 package com.jreid.srttranslator.srt;
 
+import com.jreid.srttranslator.entities.SubtitleContents;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -10,7 +11,7 @@ public class TestSRTParser {
 
     @Test
     public void testParsingSubtitle() {
-        Subtitle subtitle = new Subtitle();
-        assertThat(subtitle, is(equalTo(subtitle)));
+        SubtitleContents subtitleContents = new SubtitleContents();
+        assertThat(subtitleContents, is(equalTo(subtitleContents)));
     }
 }

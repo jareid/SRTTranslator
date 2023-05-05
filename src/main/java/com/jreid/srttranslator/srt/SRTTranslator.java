@@ -1,5 +1,6 @@
 package com.jreid.srttranslator.srt;
 
+import com.jreid.srttranslator.entities.SubtitleContents;
 import com.jreid.srttranslator.utils.GoogleTranslateUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,17 +18,17 @@ public class SRTTranslator {
      *
      * @return A translated Subtitle object
      */
-    public static Subtitle translate(String googleApiKey, Subtitle toTranslate, String fromLanguage, String toLanguage) {
-        Subtitle nextSubtitleToTranslate = toTranslate;
+    public static SubtitleContents translate(String googleApiKey, SubtitleContents toTranslate, String fromLanguage, String toLanguage) {
+        SubtitleContents nextSubtitleToTranslateContents = toTranslate;
 
-        while (nextSubtitleToTranslate != null && nextSubtitleToTranslate.isNotNull()) {
-            String text = nextSubtitleToTranslate.getText();
+        while (nextSubtitleToTranslateContents != null && nextSubtitleToTranslateContents.isNotNull()) {
+            String text = nextSubtitleToTranslateContents.getText();
             String translatedText = GoogleTranslateUtil.translate(googleApiKey, text, fromLanguage, toLanguage);
-            nextSubtitleToTranslate.setText(translatedText);
-            if (toTranslate.getNextSubtitle() != null && nextSubtitleToTranslate.isNotNull()) {
-                nextSubtitleToTranslate = nextSubtitleToTranslate.getNextSubtitle();
+            nextSubtitleToTranslateContents.setText(translatedText);
+            if (toTranslate.getNextSubtitleContents() != null && nextSubtitleToTranslateContents.isNotNull()) {
+                nextSubtitleToTranslateContents = nextSubtitleToTranslateContents.getNextSubtitleContents();
             } else {
-                nextSubtitleToTranslate = null;
+                nextSubtitleToTranslateContents = null;
             }
         }
 

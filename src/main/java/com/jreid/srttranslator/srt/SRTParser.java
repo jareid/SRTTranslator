@@ -1,5 +1,6 @@
 package com.jreid.srttranslator.srt;
 
+import com.jreid.srttranslator.entities.SubtitleContents;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,12 +32,12 @@ public final class SRTParser {
 	 * @param removeNewlines Remove any new lines from the subtitle
 	 * @return a Subtitle object
 	 */
-	public static Subtitle getSubtitlesFromFile(String path, Boolean removeTags, Boolean removeNewlines) {
-		Subtitle mainSubtitle = new Subtitle();
+	public static SubtitleContents getSubtitlesFromFile(String path, Boolean removeTags, Boolean removeNewlines) {
+		SubtitleContents mainSubtitleContents = new SubtitleContents();
 		StringBuilder srt;
 
 		try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(Files.newInputStream(Paths.get(path)), DEFAULT_CHARSET))) {
-			Subtitle subtitle = mainSubtitle;
+			SubtitleContents subtitleContents = mainSubtitleContents;
 			srt = new StringBuilder();
 
 			while (bufferedReader.ready()) {
@@ -45,15 +46,15 @@ public final class SRTParser {
 				Matcher matcher = PATTERN_NUMBERS.matcher(line);
 
 				if (matcher.find()) {
-					subtitle.setId(Integer.parseInt(matcher.group(1))); // index
+					subtitleContents.setId(Integer.parseInt(matcher.group(1))); // index
 					line = bufferedReader.readLine();
 				}
 
 				matcher = PATTERN_TIME.matcher(line);
 
 				if (matcher.find()) {
-					subtitle.setStartTime( matcher.group( PATTERN_TIME_REGEX_GROUP_START_TIME) ); // start time
-					subtitle.setEndTime( matcher.group( PATTERN_TIME_REGEX_GROUP_END_TIME ) ); // end time
+					subtitleContents.setStartTime( matcher.group( PATTERN_TIME_REGEX_GROUP_START_TIME) ); // start time
+					subtitleContents.setEndTime( matcher.group( PATTERN_TIME_REGEX_GROUP_END_TIME ) ); // end time
 				}
 
 				String aux;
@@ -75,15 +76,15 @@ public final class SRTParser {
 
 				srt.setLength(0); // Clear buffer so we start processing the next subtitle in the file
 
-				subtitle.setText(line);
+				subtitleContents.setText(line);
 
 				// Set our next node in the Subtitle object
-				subtitle.setNextSubtitle(new Subtitle());
-				subtitle = subtitle.getNextSubtitle();
+				subtitleContents.setNextSubtitleContents(new SubtitleContents());
+				subtitleContents = subtitleContents.getNextSubtitleContents();
 			}
 		} catch (Exception exception) {
 			LOGGER.fatal("error parsing srt file", exception);
 		}
-		return mainSubtitle;
+		return mainSubtitleContents;
 	}
 }
