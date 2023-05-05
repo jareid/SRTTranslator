@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -27,23 +28,21 @@ public class SubtitleContents {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
 
-	@Id
 	@Column
+	@NotNull
 	private String startTime;
 
-	@Id
 	@Column
+	@NotNull
 	private String endTime;
 
-	@Id
 	@Column
+	@NotNull
 	private String text;
 
-	@Id
 	@Column
 	private SubtitleContents previousSubtitleContents = null;
 
-	@Id
 	@Column
 	private SubtitleContents nextSubtitleContents = null;
 
