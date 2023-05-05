@@ -9,6 +9,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * A Subtitle class that represents the Subtitle objects with their times and text
+ * Acts as a Linked List
+ * TODO Add more linkedList methods
+ */
 @Data
 public class Subtitle {
 	private final static Logger logger = LogManager.getLogger(Subtitle.class);
@@ -19,6 +24,7 @@ public class Subtitle {
 	private String startTime;
 	private String endTime;
 	private String text;
+	private Subtitle previousSubtitle = null;
 	private Subtitle nextSubtitle = null;
 
 	/**
@@ -52,6 +58,46 @@ public class Subtitle {
 
 	public boolean isNotNull() {
 		return id != 0 && text != null;
+	}
+
+	/**
+	 * Gets the Subtitle object at a particular index
+	 * @param index
+	 * @return a Subtilte object
+	 */
+	public Subtitle get(int index) {
+		if (this.id == 0) return null;
+		if (this.id == index) return this;
+		Subtitle nextSubtitle = this.nextSubtitle;
+		while (nextSubtitle.isNotNull()) {
+			if ( nextSubtitle.getId() == index) return nextSubtitle;
+			else nextSubtitle = nextSubtitle.getNextSubtitle();
+		}
+		return null;
+	}
+
+	public Subtitle getFirst() {
+
+	}
+
+	public Subtitle getLast() {
+
+	}
+
+	/**
+	 * Returns the number of Subtitle objects
+	 * @return
+	 */
+	public int size() {
+		if (!this.isNotNull()) return 0;
+		else {
+			int size = 1;
+			Subtitle nextSubtitle = this.nextSubtitle;
+			while ( nextSubtitle.isNotNull() ) {
+				if ( !nextSubtitle.isNotNull() ) return size;
+				else nextSubtitle = nextSubtitle.getNextSubtitle();
+			}
+		}
 	}
 
 	@Override
