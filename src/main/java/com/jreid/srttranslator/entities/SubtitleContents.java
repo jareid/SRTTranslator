@@ -40,10 +40,10 @@ public class SubtitleContents {
 	@NotNull
 	private String text;
 
-	@Column
+	@OneToOne
 	private SubtitleContents previousSubtitleContents = null;
 
-	@Column
+	@OneToOne
 	private SubtitleContents nextSubtitleContents = null;
 
 	/**
