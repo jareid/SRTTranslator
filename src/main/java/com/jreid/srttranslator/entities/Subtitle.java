@@ -34,7 +34,7 @@ public class Subtitle {
     @NotNull(/*message="{NotNull.Subtitles.language}"*/)
     private String language;
 
-    @Column
+    @OneToOne
     @NotNull(/*message="{NotNull.Subtitles.subtitle}"*/)
     private SubtitleContents subtitleContents;
 }
